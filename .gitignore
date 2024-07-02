@@ -1,5 +1,5 @@
 bin/
-cmake/
 build/
+cmake/
 .cache/
 compile_commands.json

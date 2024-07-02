@@ -3,6 +3,8 @@
 #include "message.h"
 #include <cstdint>
 #include <cstring>
+#include <iomanip>
+#include <ios>
 #include <iostream>
 
 
@@ -96,6 +98,10 @@ namespace Halfooda::BCrypt {
                 passowrd_72[index] = password[i];
                 index++;
                 if (index == 72) {
+                    std::cout << "Data: " << std::setfill('0') << std::setw(2);
+                    for (int i = 0; i < 72; i++)
+                        std::cout << std::hex << +passowrd_72[i];
+                    std::cout << std::endl;
                     return (uint32_t*)passowrd_72;
                 }
             }

@@ -18,7 +18,7 @@ void print_with_lenght(char* message, char lenght) {
 int main()
 {
     const char* salt_str = "QvbJ8B.7w77j9OlMyrieJu";
-    const char* key_str = "correct horse battery staple\0correct horse battery staple\0correct horse";
+    const char* key_str = "correct battery horse staple\0correct battery horse staple\0correct batter";
     char salt[22];
     uint32_t key[18];
     memcpy(salt, salt_str, 22);

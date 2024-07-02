@@ -1,4 +1,4 @@
-add_library(BCrypt SHARED 
+add_library(bcrypt SHARED 
     base64.cpp
     base64.h
     bcrypt.cpp
