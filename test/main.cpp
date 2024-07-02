@@ -2,21 +2,13 @@
 #include <cstdint>
 #include <cstring>
 #include <iostream>
-#include "../src/eks_blowfish.h"
+#include "eks_blowfish.h"
 #include <sys/types.h>
 
 
-void print_with_lenght(char* message, char lenght) {
-    std::cout << "";
-    for (char i = 0; i < lenght; i++) {
-        std::cout << std::hex << message[i];
-    }
-    std::cout << std::endl;
-}
-    
+void print_with_lenght(char* message, char lenght);
 
-int main()
-{
+int main() {
     const char* salt_str = "QvbJ8B.7w77j9OlMyrieJu";
     const char* key_str = "correct battery horse staple\0correct battery horse staple\0correct batter";
     char salt[22];
@@ -31,9 +23,17 @@ int main()
                  (uint32_t)key_str[4 * i + 2] << 8  |
                  (uint32_t)key_str[4 * i + 3];
     
-    Halfooda::BCrypt::EksBlowfish eks_blowifsh(5, key, salt);
+    BCrypt::EksBlowfish eks_blowifsh(14, key, salt);
     eks_blowifsh.setup();
     unsigned char* hash = eks_blowifsh.hash();
     char* end_msg = eks_blowifsh.concatenate((char*)hash);
     print_with_lenght(end_msg, 60);
+}
+
+void print_with_lenght(char* message, char lenght) {
+    std::cout << "Message: ";
+    for (char i = 0; i < lenght; i++) {
+        std::cout << std::hex << message[i];
+    }
+    std::cout << std::endl;
 }

@@ -1,5 +1,6 @@
-#include "message.h"
 #include <iostream>
+
+#include "message.h"
 
 void print_warning(const char *message) {
     std::cout << "[BCrypt] Warning: " << message << std::endl;

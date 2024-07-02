@@ -1,17 +1,17 @@
-#include "eks_blowfish.h"
 #include <cmath>
 #include <cstdint>
 #include <cstring>
 #include <pthread.h>
 #include <random>
 #include <string>
-#include <iostream> 
+
+#include "eks_blowfish.h"
 
 #define version "$2b$"
 #define CAST static_cast<uint32_t>
 
 
-namespace Halfooda::BCrypt {
+namespace BCrypt {
     EksBlowfish::EksBlowfish(char cost, uint32_t* key) {
         Blowfish();
         m_cost = cost; 
@@ -23,10 +23,6 @@ namespace Halfooda::BCrypt {
         Blowfish();
         m_cost = cost;
         m_key = key;
-        std::cout << "Data: " ;
-        for (int i = 0; i < 18; i++) 
-            std::cout << std::hex << key[i];
-        std::cout << std::endl;
         char* decrypted_salt = decrypt_64(salt, 22);
         for (int i = 0; i < 4; i++) 
              m_salt[i] = char_to_int(decrypted_salt + 4 * i);

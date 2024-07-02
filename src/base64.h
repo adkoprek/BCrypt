@@ -1,8 +1,8 @@
 #pragma once
-
-
 #include <cstdint>
-namespace Halfooda::BCrypt {
+
+
+namespace BCrypt {
     class Base64 {
     public:
         uint8_t* encrypt_64(uint8_t* input, char lenght);

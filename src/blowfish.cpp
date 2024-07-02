@@ -1,10 +1,11 @@
-#include "blowfish.h"
-#include "pi.h"
 #include <cstdint>
 #include <cstring>
 
+#include "blowfish.h"
+#include "pi.h"
 
-namespace Halfooda::BCrypt {
+
+namespace BCrypt {
     Blowfish::Blowfish() {
         memcpy(p, P, 72);
         memcpy(s1, S1, 1024);

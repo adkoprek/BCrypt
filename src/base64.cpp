@@ -1,12 +1,13 @@
-#include "base64.h"
 #include <cstdint>
 #include <string>
+
+#include "base64.h"
 
 #define WHITESPACE 64
 #define EQUALS     65
 
 
-namespace Halfooda::BCrypt {
+namespace BCrypt {
     uint8_t* Base64::encrypt_64(uint8_t* input, char lenght) {
         static std::string output;
         output = "";

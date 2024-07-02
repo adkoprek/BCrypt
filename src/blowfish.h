@@ -1,9 +1,8 @@
 #pragma once 
-
 #include <cstdint>
 
 
-namespace Halfooda::BCrypt {
+namespace BCrypt {
     class Blowfish {
     public:
         Blowfish();

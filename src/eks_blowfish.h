@@ -1,11 +1,11 @@
 #pragma once
+#include <cstdint>
 
 #include "base64.h"
 #include "blowfish.h"
-#include <cstdint>
 
 
-namespace Halfooda::BCrypt {
+namespace BCrypt {
     class EksBlowfish : private Blowfish, private Base64 {
     public:
         EksBlowfish(char cost, uint32_t* key);

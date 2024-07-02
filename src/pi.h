@@ -1,9 +1,8 @@
 #pragma once
-
 #include <cstdint>
 
 
-namespace Halfooda::BCrypt {
+namespace BCrypt {
     const uint32_t P[18] = 
         {
             0x243F6A88, 0x85A308D3, 0x13198A2E, 0x03707344, 0xA4093822, 
