@@ -1,7 +1,26 @@
+//  ____   _____ _______     _______ _______ 
+// |  _ \ / ____|  __ \ \   / /  __ \__   __|
+// | |_) | |    | |__) \ \_/ /| |__) | | |   
+// |  _ <| |    |  _  / \   / |  ___/  | |   
+// | |_) | |____| | \ \  | |  | |      | |   
+// |____/ \_____|_|  \_\ |_|  |_|      |_|   
+//   https://github.com/adkoprek/bcrypt
+//
+// The main class interface for the BCrypt algorithem
+//
+// This class has just to be intialized once with the cast
+// and then can be used to encrypt with that cost but for
+// decryption the cost is fetched from the hash.
+//
+// @Author: Adam Koprek
+// @Contributors: -
+// @Licence: MIT
+
 #include <cstdint>
 #include <string>
 
 #include "base64.h"
+#include "base64_table.h"
 
 #define WHITESPACE 64
 #define EQUALS     65
@@ -26,19 +45,19 @@ namespace BCrypt {
             uint8_t n2 = (uint8_t)(n >> 6)  & 0x3F;
             uint8_t n3 = (uint8_t)n         & 0x3F;
 
-            output += m_table[n0];
-            output += m_table[n1];
+            output += TABLE[n0];
+            output += TABLE[n1];
 
             if ((i + 2) >= lenght) {
-                output += m_table[n2];
+                output += TABLE[n2];
                 break;
             }
-            output += m_table[n2];
+            output += TABLE[n2];
 
             if ((i + 3) >= lenght) 
-                output += m_table[n3];
+                output += TABLE[n3];
             
-            output += m_table[n3];
+            output += TABLE[n3];
         }
 
         return (uint8_t*)output.data();
@@ -58,8 +77,8 @@ namespace BCrypt {
         }
 
         for (char i = 0; i < lenght; i += 4)  {
-            uint32_t n = (m_decode_table[input[i]]  << 18) + (m_decode_table[input[i + 1]] << 12) +
-                (m_decode_table[input[i + 2]] << 6) + m_decode_table[input[i + 3]];
+            uint32_t n = (DECODE_TABLE[input[i]]  << 18) + (DECODE_TABLE[input[i + 1]] << 12) +
+                (DECODE_TABLE[input[i + 2]] << 6) + DECODE_TABLE[input[i + 3]];
 
             output += ((n >> 16) & 255);
             output += ((n >> 8) & 255);
