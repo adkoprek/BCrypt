@@ -34,7 +34,7 @@ namespace BCrypt {
         // Genreate the hash from a password
         // @param the password
         // @return the hash
-        char* encrypt(const char* password);
+        const char* encrypt(const char* password);
 
         // Verify if a string generates a given hash
         // @param the plain password 

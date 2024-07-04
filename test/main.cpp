@@ -1,33 +1,19 @@
-#include <cstddef>
-#include <cstdint>
-#include <cstring>
 #include <iostream>
-#include "eks_blowfish.h"
 #include <sys/types.h>
+
+#include "bcrypt.h"
 
 
 void print_with_lenght(char* message, char lenght);
 
 int main() {
-    const char* salt_str = "QvbJ8B.7w77j9OlMyrieJu";
-    const char* key_str = "correct battery horse staple\0correct battery horse staple\0correct batter";
-    char salt[22];
-    uint32_t key[18];
-    memcpy(salt, salt_str, 22);
-    memcpy(key, key_str, 72);
-    strncpy((char*)key, key_str, 72);
-
-    for (size_t i = 0; i < 18; i++)
-        key[i] = (uint32_t)key_str[4 * i + 0] << 24 |
-                 (uint32_t)key_str[4 * i + 1] << 16 |
-                 (uint32_t)key_str[4 * i + 2] << 8  |
-                 (uint32_t)key_str[4 * i + 3];
-    
-    BCrypt::EksBlowfish eks_blowifsh(14, key, salt);
-    eks_blowifsh.setup();
-    unsigned char* hash = eks_blowifsh.hash();
-    char* end_msg = eks_blowifsh.concatenate((char*)hash);
-    print_with_lenght(end_msg, 60);
+    BCrypt::BCrypt bcrypt(3);
+    const char* hash = bcrypt.encrypt("Test");
+    print_with_lenght((char*)hash, 60);
+    bool corectness_false = bcrypt.verify("asdg", hash);
+    bool corectness_true = bcrypt.verify("Test", hash);
+    std::cout << "The first try was: " << std::boolalpha << corectness_false << std::endl;
+    std::cout << "The second try was: " << std::boolalpha << corectness_true << std::endl;
 }
 
 void print_with_lenght(char* message, char lenght) {

@@ -45,8 +45,6 @@ target_include_directories(bcrypt PRIVATE include)
 target_link_libraries(bcrypt_test bcrypt)
 
 # Install   
-install (TARGETS bcrypt 
-    LIBRARY DESTINATION lib)
+install (TARGETS bcrypt LIBRARY DESTINATION /usr/lib64)
 
-install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ 
-    DESTINATION include)
+install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ DESTINATION /usr/include)
