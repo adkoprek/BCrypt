@@ -1,45 +1,94 @@
-# BCrypt
-## Main
-```lua
-function Bcrypt(cost, salt, pwd)
-	state = EskBlowfishSetup(cost, salt, pwd)
-	ctext = "HaloAndFoodGivesHalfooda"	
-	repeate 64
-		ctext = EncryptECB(state, ctext)
-	return Concatenate(cost, salt, ctext)
-		
+<a name="readme-top"></a>
+
+<p align="center">
+  <a href="https://github.com/adkoprek/WTE/graphs/contributors">
+	  <img src="https://img.shields.io/github/contributors/adkoprek/WTE.svg?style=for-the-badge" alt="Contributors">
+  </a>
+  <a href="https://github.com/adkoprek/WTE/network/members">
+	  <img src="https://img.shields.io/github/forks/adkoprek/WTE.svg?style=for-the-badge" alt="Forks">
+  </a>
+  <a href="https://github.com/adkoprek/WTE/stargazers">
+	  <img src="https://img.shields.io/github/stars/adkoprek/WTE.svg?style=for-the-badge" alt="Stargazers">
+  </a>
+  <a href="https://github.com/adkoprek/WTE/issues">
+	  <img src="https://img.shields.io/github/issues/adkoprek/WTE.svg?style=for-the-badge" alt="Issues">
+  </a>
+  <a href="https://github.com/adkoprek/WTE/blob/master/LICENSE.txt">
+	  <img src="https://img.shields.io/github/license/adkoprek/WTE.svg?style=for-the-badge" alt="MIT License">
+  </a>
+</p>
+
+<br />
+<div align="center">
+  <a href="https://github.com/adkoprek/WTE">
+    <img src="assets/logo.png" alt="Logo">
+  </a>
+
+  <h3 align="center">BCrypt - Password Encryption</h3>
+
+  <p align="center">
+    A worldwide used algorithem to encrypt passwords
+    <br />
+    <a href="https://en.wikipedia.org/wiki/Bcrypt">Wiki Article</a>
+    ·
+    <a href="https://github.com/adkoprek/WTE/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    ·
+    <a href="https://github.com/adkoprek/WTE/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+  </p>
+</div>
+
+### Built With
+[![CPP][CPP.js]][CPP-url]
+
+<!-- GETTING STARTED -->
+## Getting Started
+
+If you want your own copy just follow this steps
+
+Clone the repo
+```bash
+git clone https://github.com/adkoprek/BCrypt
 ```
-The function `EncryptECB` encrypts every 64bit clock of the ctext and puts it then together.
 
-## EskBlowfishSetup
-```lua
-function EskBlowfishSetup(cost, salt, key)
-	P = uint_32[18] = π
-	S = uint_32[4][256] = π
-	P, S = ExpandKey(P, S, salt, key)
-	repeate 2^(cost)
-		P, S = Expandkey(P, S, 0, salt)
-		P, S = ExpandKey(P, S, 0, key)
+Create a cmake directory
+```bash
+mkdir cmake
+cd cmake
 ```
 
-## ExpandKey
-```lua
-function ExpandKey(P, S, salt, key)
-	for n = 0 in 18 do
-		P[n] = P[n] xor key[32(n - 1):(32 * n-1)]
-	
-	R = salt[0:63]
-	L = salt[64:127]
-	block = 0
-
-	for i = 0 in 9 do
-		block = block xor (i % 2 == 0) ? L : R
-		P[2 * i] = block[0:31]
-		P[2 * i + 1] = block[32:63]
-
-	for i = 0 in 4 do
-		for n = 0 in 127 do
-			block = block xor (i % 2 == 0) ? L : R
-			S[i][2 * n] = block[0:31]
-			S[i][2 * n + 1] = block[32:63]
+Build the project and install
+```bash
+cmake .. -DCMAKE_BUILD_TYPE=Release
+make install
 ```
+
+### Prerequisites
+
+  - C++ 17 compiler
+  - CMake 3.5 Version
+
+## Usage
+
+The include header is names `bcrypt.h` that you have to include in your program
+And link the appropriate library `libbcrypt.so`
+
+
+## Contributing
+
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
+Don't forget to give the project a star! Thanks again!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+
+[CPP.js]: https://img.shields.io/badge/C%2B%2B-00599C?style=for-the-badge&logo=c%2B%2B&logoColor=white
+[CPP-url]: https://isocpp.org/
