@@ -21,6 +21,5 @@ namespace BCrypt {
         void generate_salt();
         void expand_key(uint32_t* salt, uint32_t* key, char key_lenght);
         void apply_s_box(uint32_t* s, uint32_t* l, uint32_t* r, uint32_t* salt);
-        uint32_t char_to_int(char* str);
     };
 }

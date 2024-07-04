@@ -8,8 +8,13 @@
 //
 // The main class interface for the BCrypt algorithem
 //
+// This class has just to be intialized once with the cast
+// and then can be used to encrypt with that cost but for
+// decryption the cost is fetched from the hash.
+//
 // @Author: Adam Koprek
-// @Email: adkoprek@gmail.com
+// @Contributors: -
+// @Licence: MIT
 
 #pragma once
 #include <cstdint>
@@ -42,6 +47,11 @@ namespace BCrypt {
         *                       functions
         ************************************************************/
 
+        // Extract the cost with witch the hash was encoded
+        // @param the hash
+        // @return the cost
+        char extract_cost(const char* hash);
+
         // Extract the base64 encoded salt part of the hash
         // @param the hash
         // @return the base64 encoded salt
@@ -60,6 +70,7 @@ namespace BCrypt {
         /************************************************************
         *                       fields
         ************************************************************/
-        char m_cost;
+
+        char m_cost;                    // Stores the cost passed in the constructor
     };
 }

@@ -6,7 +6,7 @@ add_library(bcrypt SHARED
     blowfish.h
     eks_blowfish.cpp
     eks_blowfish.h
-    message.cpp
-    message.h
+    helper.cpp
+    helper.h
     pi.h
 )

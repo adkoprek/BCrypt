@@ -6,6 +6,7 @@
 #include <string>
 
 #include "eks_blowfish.h"
+#include "helper.h"
 
 #define version "$2b$"
 #define CAST static_cast<uint32_t>
@@ -25,14 +26,7 @@ namespace BCrypt {
         m_key = key;
         char* decrypted_salt = decrypt_64(salt, 22);
         for (int i = 0; i < 4; i++) 
-             m_salt[i] = char_to_int(decrypted_salt + 4 * i);
-    }
-
-    uint32_t EksBlowfish::char_to_int(char* str) {
-        return  (CAST(str[0]) << 24) & 0xff000000 |
-                (CAST(str[1]) << 16) & 0x00ff0000 |
-                (CAST(str[2]) << 8 ) & 0x0000ff00 |
-                (CAST(str[3])      ) & 0x000000ff;
+             m_salt[i] = char_to_uint32(decrypted_salt + 4 * i);
     }
 
     void EksBlowfish::setup() {
@@ -63,12 +57,8 @@ namespace BCrypt {
         }
 
         unsigned char hash[24];
-        for (int i = 0; i < 6; i++) {
-            hash[4 * i + 0] = (data[i] >> 24) & 0xff;
-            hash[4 * i + 1] = (data[i] >> 16) & 0xff;
-            hash[4 * i + 2] = (data[i] >> 8)  & 0xff;
-            hash[4 * i + 3] = (data[i] >> 0)  & 0xff;
-        } 
+        for (int i = 0; i < 6; i++)
+            memcpy(hash + 4 * i, uint32_to_char(data[i]), 4);
 
         static unsigned char output[31];
         memcpy(output, encrypt_64(hash, 24), 31);
@@ -85,19 +75,13 @@ namespace BCrypt {
 
 
         unsigned char char_salt[24];
-        for (int i = 0; i < 4; i++) {
-            char_salt[4 * i + 0] = (m_salt[i] >> 24) & 0xff;
-            char_salt[4 * i + 1] = (m_salt[i] >> 16) & 0xff;
-            char_salt[4 * i + 2] = (m_salt[i] >> 8)  & 0xff;
-            char_salt[4 * i + 3] = (m_salt[i] >> 0)  & 0xff;
-        } 
+        for (int i = 0; i < 4; i++)
+            memcpy(char_salt + i * 4, uint32_to_char(m_salt[i]), 4);
 
         char salt[22];
         memcpy(salt, encrypt_64(char_salt, 16), 22);
         output.append(salt, 22);
-        
         output.append(hash, 31);
-
 
         return (char*)output.data();
     }
