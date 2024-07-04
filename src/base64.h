@@ -18,9 +18,9 @@
 // @Licence: MIT
 
 #pragma once
-
-
 #include <cstdint>
+
+
 namespace BCrypt {
     class Base64 {
     public:

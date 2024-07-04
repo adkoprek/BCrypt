@@ -1,3 +1,21 @@
+//  ____   _____ _______     _______ _______ 
+// |  _ \ / ____|  __ \ \   / /  __ \__   __|
+// | |_) | |    | |__) \ \_/ /| |__) | | |   
+// |  _ <| |    |  _  / \   / |  ___/  | |   
+// | |_) | |____| | \ \  | |  | |      | |   
+// |____/ \_____|_|  \_\ |_|  |_|      |_|   
+//   https://github.com/adkoprek/bcrypt
+//
+// A class implementation for the ekspensive blowfish
+//
+// This is class implements the setup of the Blowfish
+// state with the user password and the encryption of
+// 'OrpheanBeholderScryDoubt'
+//
+// @Author: Adam Koprek
+// @Contributors: -
+// @Licence: MIT
+
 #include <cmath>
 #include <cstdint>
 #include <cstring>
@@ -13,15 +31,19 @@
 
 
 namespace BCrypt {
+    /************************************************************
+    *                       public
+    ************************************************************/
+
+    // Constructor (no salt)
     EksBlowfish::EksBlowfish(char cost, uint32_t* key) {
-        Blowfish();
         m_cost = cost; 
         m_key = key;
         generate_salt();
     }
 
+    // Constructor (with salt)
     EksBlowfish::EksBlowfish(char cost, uint32_t* key, char* salt) {
-        Blowfish();
         m_cost = cost;
         m_key = key;
         char* decrypted_salt = decrypt_64(salt, 22);
@@ -29,6 +51,7 @@ namespace BCrypt {
              m_salt[i] = char_to_uint32(decrypted_salt + 4 * i);
     }
 
+    // Setup the blowfish state, this can take a while
     void EksBlowfish::setup() {
         static uint32_t null_salt[4] = { 0 };
         uint32_t computed_cost = pow(2, m_cost);
@@ -40,7 +63,9 @@ namespace BCrypt {
         }
     }
 
+    // Hash the string 'OrpheanBeholderScryDoubt'
     uint8_t* EksBlowfish::hash() {
+        // 'OrpheanBeholderScryDoubt' in hex form
         uint32_t data[6] = {
             0x4F727068,
             0x65616E42,
@@ -66,6 +91,7 @@ namespace BCrypt {
         return output;
     }
 
+    // Combine the cost, salt and hash
     char* EksBlowfish::concatenate(char* hash) {
         static std::string output = version;
         output = version;
@@ -86,10 +112,15 @@ namespace BCrypt {
         return (char*)output.data();
     }
 
+    /************************************************************
+    *                       private
+    ************************************************************/
+
+    // Generate random salt and store it internaly
     void EksBlowfish::generate_salt() {
         std::random_device seed;
         std::mt19937 engine(seed());
-        std::uniform_int_distribution<char> span(33, 126);
+        std::uniform_int_distribution<char> span(0, 127);
         char buffer[4];
 
         for (char i = 0; i < 4; i++) {
@@ -101,6 +132,7 @@ namespace BCrypt {
         }
     }
 
+    // Expand the blowfish state
     void EksBlowfish::expand_key(uint32_t* salt, uint32_t* key, char key_lenght) {
         for (char i = 0; i < 18; i++) 
             p[i] = p[i] xor key[i % key_lenght];
@@ -123,6 +155,7 @@ namespace BCrypt {
         apply_s_box(s4, &l, &r, salt);
     }
 
+    // Apply the key to a specific S-Box
     void EksBlowfish::apply_s_box(uint32_t* s, uint32_t* l, uint32_t* r, uint32_t* salt) {
         int k = 2;
 

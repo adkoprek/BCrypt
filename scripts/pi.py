@@ -1,3 +1,20 @@
+#  ____   _____ _______     _______ _______ 
+# |  _ \ / ____|  __ \ \   / /  __ \__   __|
+# | |_) | |    | |__) \ \_/ /| |__) | | |   
+# |  _ <| |    |  _  / \   / |  ___/  | |   
+# | |_) | |____| | \ \  | |  | |      | |   
+# |____/ \_____|_|  \_\ |_|  |_|      |_|   
+#   https://github.com/adkoprek/bcrypt
+#
+# Extract the digits of pi from pi.txt in assets
+#
+# This script prints the digits of pi in a format
+# that can be easily copied into an c array
+#
+# @Author: Adam Koprek
+# @Contributors: -
+# @Licence: MIT
+
 FILE = open('../assets/pi.txt', 'r')
 READ_FILE = FILE.read()
 SPLIT_FILE = READ_FILE.split("\n")

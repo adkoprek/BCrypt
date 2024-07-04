@@ -1,3 +1,21 @@
+//  ____   _____ _______     _______ _______ 
+// |  _ \ / ____|  __ \ \   / /  __ \__   __|
+// | |_) | |    | |__) \ \_/ /| |__) | | |   
+// |  _ <| |    |  _  / \   / |  ___/  | |   
+// | |_) | |____| | \ \  | |  | |      | |   
+// |____/ \_____|_|  \_\ |_|  |_|      |_|   
+//   https://github.com/adkoprek/bcrypt
+//
+// The digits of pi used for the first state of Blowfish
+//
+// This digits of pi start at .14 at the 0th index in the P array
+// and finish on the last index of the the s4 array, this is that
+// they can streight be copied into Blowfish
+//
+// @Author: Adam Koprek
+// @Contributors: -
+// @Licence: MIT
+
 #pragma once
 #include <cstdint>
 

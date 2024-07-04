@@ -1,3 +1,20 @@
+//  ____   _____ _______     _______ _______ 
+// |  _ \ / ____|  __ \ \   / /  __ \__   __|
+// | |_) | |    | |__) \ \_/ /| |__) | | |   
+// |  _ <| |    |  _  / \   / |  ___/  | |   
+// | |_) | |____| | \ \  | |  | |      | |   
+// |____/ \_____|_|  \_\ |_|  |_|      |_|   
+//   https://github.com/adkoprek/bcrypt
+//
+// Tables needed for base64 encoding
+//
+// This tables are used by the Base64 class in
+// base64.h to encrypt and decrypt strings
+//
+// @Author: Adam Koprek
+// @Contributors: -
+// @Licence: MIT
+
 #pragma once
 
 

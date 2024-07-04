@@ -6,11 +6,12 @@
 // |____/ \_____|_|  \_\ |_|  |_|      |_|   
 //   https://github.com/adkoprek/bcrypt
 //
-// The main class interface for the BCrypt algorithem
+// A class for bcrypt base64 encodeing
 //
-// This class has just to be intialized once with the cast
-// and then can be used to encrypt with that cost but for
-// decryption the cost is fetched from the hash.
+// This class provides to very simple functions
+// to encrypt and decrypt a base64 encoded string
+// but this algorithem uses an different hashing
+// table as the common base64 encoding.
 //
 // @Author: Adam Koprek
 // @Contributors: -
@@ -27,6 +28,11 @@
 
 
 namespace BCrypt {
+    /************************************************************
+    *                       public
+    ************************************************************/
+
+    // Base64 encrypt a string
     uint8_t* Base64::encrypt_64(uint8_t* input, char lenght) {
         static std::string output;
         output = "";
@@ -63,6 +69,7 @@ namespace BCrypt {
         return (uint8_t*)output.data();
     }
 
+    // Base64 decrypt a string
     char* Base64::decrypt_64(char* input, char lenght) {
         static std::string output;
         output = "";
