@@ -134,7 +134,7 @@ namespace BCrypt {
     // Expand the blowfish state
     void EksBlowfish::expand_key(uint32_t* salt, uint32_t* key, char key_lenght) {
         for (char i = 0; i < 18; i++) 
-            p[i] = p[i] xor key[i % key_lenght];
+            p[i] = p[i] ^ key[i % key_lenght];
 
         uint32_t l = 0;
         uint32_t r = 0;
