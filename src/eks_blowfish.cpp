@@ -120,7 +120,7 @@ namespace BCrypt {
     void EksBlowfish::generate_salt() {
         std::random_device seed;
         std::mt19937 engine(seed());
-        std::uniform_int_distribution<char> span(0, 127);
+        std::uniform_int_distribution<int> span(0, 127);
         char buffer[4];
 
         for (char i = 0; i < 4; i++) {
