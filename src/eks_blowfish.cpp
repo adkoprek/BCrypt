@@ -53,7 +53,7 @@ namespace BCrypt {
     // Setup the blowfish state, this can take a while
     void EksBlowfish::setup() {
         static uint32_t null_salt[4] = { 0 };
-        uint32_t computed_cost = pow(2, m_cost);
+        uint32_t computed_cost = (uint32_t)pow(2, m_cost);
 
         expand_key(m_salt, m_key, 18);
         for (uint32_t i = 0; i < computed_cost; i++) {
