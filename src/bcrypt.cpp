@@ -16,6 +16,7 @@
 // @Contributors: -
 // @Licence: MIT
 
+#include <cstddef>
 #include <cstring>
 
 #include "bcrypt.h"
@@ -60,7 +61,7 @@ namespace BCrypt {
     // Verify if a string generates a given hash
     bool BCrypt::verify(const char* password, const char* hash) {
         char cost = extract_cost(hash);
-        if (cost == -1) return -1;
+        if (cost == -1) return false;
         uint32_t* key = cycle_password(password);
         char* salt = extract_salt(hash);
 
@@ -86,7 +87,6 @@ namespace BCrypt {
     char BCrypt::extract_cost(const char* hash) {
         char cost_num_1 = hash[4] - '0';
         char cost_num_2 = hash[5] - '0';
-        char cost;
 
         if (strlen(hash) != 60)
             throw_error("The lenght of the hash is incorrect");
@@ -149,7 +149,7 @@ namespace BCrypt {
 
     // Extract the base64 encoded salt part of the hash
     uint32_t* BCrypt::cycle_password(const char* password) {
-        char password_length = strlen(password) + 1;
+        size_t password_length = strlen(password) + 1;
         static char buffer[72];
         static uint32_t password_72[18];
         char index = 0;

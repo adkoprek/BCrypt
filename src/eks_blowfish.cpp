@@ -19,7 +19,6 @@
 #include <cmath>
 #include <cstdint>
 #include <cstring>
-#include <pthread.h>
 #include <random>
 #include <string>
 

@@ -59,7 +59,7 @@ namespace BCrypt {
     // Apply the Feistel network on 32 bits
     uint32_t Blowfish::f(uint32_t block) {
         uint32_t h = s1[block >> 24] + s2[(uint8_t)(block >> 16)];
-        return (h xor s3[(uint8_t)(block >> 8)]) + s4[(uint8_t)block];
+        return (h ^ s3[(uint8_t)(block >> 8)]) + s4[(uint8_t)block];
     }
 
     // Swap two 32 bit integers
