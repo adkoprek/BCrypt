@@ -49,6 +49,7 @@ jobs:
         run: |
           echo github.event.action: ${{ github.event.action }}
           echo github.event_name: ${{ github.event_name }}
+          echo secrets.GH_TOKEN: ${{ secrets.GH_TOKEN }}
 
 
       - name: Install dependencies on windows
@@ -60,7 +61,7 @@ jobs:
         # cmd "${{ matrix.config.environment_script }}"
 
       - name: Install dependencies on ubuntu
-        if: startsWith(matrix.config.name, 'Ubuntu_Latest_GCC')
+        if: startsWith(matrix.config.os, 'ubuntu')
         run: |
           sudo apt-get update
           sudo apt-get install ninja-build cmake
