@@ -93,12 +93,7 @@ jobs:
 
       - name: Install Strip
         shell: bash
-        if: startsWith(matrix.config.os, 'macos')
-          run: sudo cmake --install . --strip
-        if: startsWith(matrix.config.name, 'Ubuntu_Latest_GCC')
-          run: sudo cmake --install . --strip
-        if: startsWith(matrix.config.os, 'windows')
-          run: cmake --install . --strip
+        run: cmake --install . --strip
 
 
       - name: Pack
