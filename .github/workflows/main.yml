@@ -85,7 +85,7 @@ jobs:
           cmake --version
 
       - name: Install dependencies for Android
-        if: startsWith(matrix.config.name 'Android')
+        if: startsWith(matrix.config.name, 'Android')
         run: |
           wget https://dl.google.com/android/repository/android-ndk-r26d-linux-x86_64.zip
           unzip android-ndk-r26d-linux-x86_64.zip
