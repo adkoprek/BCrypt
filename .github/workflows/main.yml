@@ -96,7 +96,7 @@ jobs:
           unzip android-ndk-r26d-linux.zip
           export ANDROID_NDK_HOME=$HOME/android-ndk-r26d-linux/android-ndk-r26d
         
-      - name: Configure
+      - name: Configure for non Android platforms
         if: ${{ !startsWith(matrix.config.name, 'Android') }}
         shell: bash
         run: |
@@ -108,6 +108,8 @@ jobs:
             -DCMAKE_BUILD_TYPE=${{ matrix.config.build_type }} \
             -G "${{ matrix.config.generators }}" \
             -DCMAKE_INSTALL_PREFIX:PATH=instdir
+
+      - name: Configure for Android
         if: startsWith(matrix.config.name, 'Android')
         shell: bash
         run: |
@@ -129,8 +131,7 @@ jobs:
       - name: Install Strip
         shell: bash
         run: cmake --install . --strip
-
-
+        
       - name: Pack
         shell: bash
         working-directory: instdir
