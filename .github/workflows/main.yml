@@ -87,11 +87,17 @@ jobs:
       - name: Install dependencies for Android
         if: startsWith(matrix.config.name, 'Android')
         run: |
+          sudo apt-get update
+          sudo apt-get install ninja-build cmake
+          ninja --version
+          cmake --version
+          clang --version
           wget https://dl.google.com/android/repository/android-ndk-r26d-linux.zip
           unzip android-ndk-r26d-linux.zip
           export ANDROID_NDK_HOME=$HOME/android-ndk-r26d-linux/android-ndk-r26d
         
       - name: Configure
+        if: ${{ !startsWith(matrix.config.name, 'Android') }}
         shell: bash
         run: |
           mkdir build
@@ -102,7 +108,20 @@ jobs:
             -DCMAKE_BUILD_TYPE=${{ matrix.config.build_type }} \
             -G "${{ matrix.config.generators }}" \
             -DCMAKE_INSTALL_PREFIX:PATH=instdir
-
+        if: startsWith(matrix.config.name, 'Android')
+        shell: bash
+        run: |
+          mkdir build
+          mkdir instdir
+          cmake \
+            -S . \
+            -B . \
+            -DCMAKE_BUILD_TYPE=${{ matrix.config.build_type }} \
+            -G "${{ matrix.config.generators }}" \
+            -DCMAKE_INSTALL_PREFIX:PATH=instdir
+            -DCMAKE_TOOLCHAIN_FILE=$ANDROID_NDK_HOME/build/cmake/android.toolchain.cmake 
+            -DANDROID_ABI=armeabi-v7a 
+            
       - name: Build
         shell: bash
         run: cmake --build . --config ${{ matrix.config.build_type }}
@@ -126,7 +145,6 @@ jobs:
           name: ${{ matrix.config.artifact }}
 
       - name: Upload release asset
-        if: github.event_name == 'release' && (github.event.action == 'published' || github.event.action == 'created')
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
