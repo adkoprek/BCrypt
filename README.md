@@ -1,20 +1,20 @@
 <a name="readme-top"></a>
 
 <p align="center">
-  <a href="https://github.com/adkoprek/WTE/graphs/contributors">
-	  <img src="https://img.shields.io/github/contributors/adkoprek/WTE.svg?style=for-the-badge" alt="Contributors">
+  <a href="https://github.com/adkoprek/BCrypt/graphs/contributors">
+	  <img src="https://img.shields.io/github/contributors/adkoprek/BCrypt.svg?style=for-the-badge" alt="Contributors">
   </a>
-  <a href="https://github.com/adkoprek/WTE/network/members">
-	  <img src="https://img.shields.io/github/forks/adkoprek/WTE.svg?style=for-the-badge" alt="Forks">
+  <a href="https://github.com/adkoprek/BCrypt/network/members">
+	  <img src="https://img.shields.io/github/forks/adkoprek/BCrypt.svg?style=for-the-badge" alt="Forks">
   </a>
-  <a href="https://github.com/adkoprek/WTE/stargazers">
-	  <img src="https://img.shields.io/github/stars/adkoprek/WTE.svg?style=for-the-badge" alt="Stargazers">
+  <a href="https://github.com/adkoprek/BCrypt/stargazers">
+	  <img src="https://img.shields.io/github/stars/adkoprek/BCrypt.svg?style=for-the-badge" alt="Stargazers">
   </a>
-  <a href="https://github.com/adkoprek/WTE/issues">
-	  <img src="https://img.shields.io/github/issues/adkoprek/WTE.svg?style=for-the-badge" alt="Issues">
+  <a href="https://github.com/adkoprek/BCrypt/issues">
+	  <img src="https://img.shields.io/github/issues/adkoprek/BCrypt.svg?style=for-the-badge" alt="Issues">
   </a>
-  <a href="https://github.com/adkoprek/WTE/blob/master/LICENSE.txt">
-	  <img src="https://img.shields.io/github/license/adkoprek/WTE.svg?style=for-the-badge" alt="MIT License">
+  <a href="https://github.com/adkoprek/BCrypt/blob/master/LICENSE.txt">
+	  <img src="https://img.shields.io/github/license/adkoprek/BCrypt.svg?style=for-the-badge" alt="MIT License">
   </a>
 </p>
 
@@ -31,9 +31,9 @@
     <br />
     <a href="https://en.wikipedia.org/wiki/Bcrypt">Wiki Article</a>
     ·
-    <a href="https://github.com/adkoprek/WTE/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="https://github.com/adkoprek/BCrypt/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     ·
-    <a href="https://github.com/adkoprek/WTE/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://github.com/adkoprek/BCrypt/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>
 </div>
 
